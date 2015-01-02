@@ -7,7 +7,11 @@ public class MyLinkedList {
     }
 
     public boolean add( int value ) {
-	LNode temp = new LNode(value);
+
+	//LNode temp = new LNode(value);
+	//this.start.prev = temp;
+	//temp.next = this.start;
+
         size++;
 	return true;
     }
@@ -22,7 +26,7 @@ public class MyLinkedList {
 
     public int set( int index, int value ) {
 	LNode node = getNthNode(index);
-	int temp = node.get(index);
+	int temp = get(index);
 	node.value = value;
 	return temp;
     }
@@ -42,7 +46,7 @@ public class MyLinkedList {
 
     private void remove( LNode target ) {
 	if ( this.start == target && this.end == target ) {
-	    target.value = null;
+	    //target.value = null;
 	}
 	else if ( this.start == target ) {
 	    target.next = start;
@@ -56,6 +60,13 @@ public class MyLinkedList {
 	    target.next.prev = target.prev;
 	    target.prev.next = target.next;
 	}
+    }
+
+    private void addAfter( LNode location, LNode toBeAdded ) {
+	toBeAdded.prev = location;
+	toBeAdded.next = location.next;
+	location.next.prev = toBeAdded;
+	location.next = toBeAdded;
     }
 	
 	
@@ -75,41 +86,42 @@ public class MyLinkedList {
     }
 
 
-    private class LNode {
+    public class LNode {
 	private int value;
 	private LNode next, prev;
-	
+    
 	public LNode( int value ) {
 	    this.value = value;
 	}
-
+    
 	public String toString() {
 	    String ans = "";
 	    if ( prev == null ) {
 		ans += "(null)";
 	    }
 	    else {
-		ans += prev.value;
+		ans += "(" + prev.value + ")";
 	    }
 	    ans += "(" + value + ")";
 	    if ( next == null ) {
 		ans += "(null)";
 	    }
 	    else {
-		ans += "(" + value + ")";
+		ans += "(" + next.value + ")";
 	    }
-		    
+	
 	    return ans;
 	}
     }
 
     public static void main( String[] args ) {
 	MyLinkedList m = new MyLinkedList();
-	m.add(3);
-	m.add(7);
 	m.add(1);
-	m.add(2);
+	//m.add(2);
+	//m.add(3);
+	//m.add(4);
         System.out.println(m);
+
     }
     
 }
