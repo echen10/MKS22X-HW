@@ -82,8 +82,9 @@ public class QueenBoard{
 	    if ( board[col][row] == 0 ) {
 		addQueen(row,col);
 		return solveH(col+1);
-	    }	
+	    }
 	}
+	//removeQueen(row,col)
 	return solveH(col+1);
     }
 
@@ -110,14 +111,15 @@ public class QueenBoard{
 	}
     	return ans;
     }
-    /*
+
     public static void main( String[] args ) {
 	QueenBoard q = new QueenBoard(4);
 	System.out.println(q);
 	q.addQueen(2,3);
 	q.solve();
+	System.out.println(q);
 	
 	//System.out.println( q.getCount() );
     }
-    */
+
 }
