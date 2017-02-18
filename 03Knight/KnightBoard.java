@@ -6,15 +6,21 @@ public class KnightBoard() {
     }
 
     public void solve() {
-	solveH(0,0,1);
+	if ( solveH(0,0,1) ) {
+	    solveH(0,0,1);
+	}
     }
 
     private boolean solveH(int row, int col, int level) {
 	if ( level >= row*col ) {
 	    return true;
 	}
+	if ( !( isGoodSpot(row,col) ) ) {
+	    return false;
+	}
 	board[row+r][col+c] = level;
-	solveH(r,c,level);
+	solveH(r,c,level+1);
+	
     }
 
     private boolean isGoodSpot(int row, int col) {
@@ -28,6 +34,7 @@ public class KnightBoard() {
 	     board[row+1][col-2] != 0 ) {
 	    return true;
 	}
+	return false;
     }
 
     public String toString() {
