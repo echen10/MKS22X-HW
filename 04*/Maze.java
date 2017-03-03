@@ -8,16 +8,22 @@ public class Maze {
     public Maze(String filename) {
 	File file = new File(filename);
 	try {
-	Scanner in = new Scanner(file);
+	    Scanner in = new Scanner( new FileReader(filename) );
+
+	    String stuff = "";
+	    int row;
+	    int col = 0;
+	    while ( in.hasNextLine() ) {
+		stuff += in.nextLine();
+		stuff.toCharArray();
+		row = stuff.length();
+		System.out.println(row);
+		col++;
+	    }
 	}
-	catch( FileNotFoundException e) {
+	catch( FileNotFoundException e ) {
 	}
-	int lineNumber = 1;
-	while ( in.hasNextLine() ) {
-	    String line = in.nextLine();
-	    System.out.println(line);
-	}
-	    
+    
 	//maze = new char[][];
 	animate = false;
     }
@@ -52,7 +58,9 @@ public class Maze {
             System.out.println("\033[2J\033[1;1H"+this);
             //wait(20);
         }
-        //COMPLETE SOLVE
+ 
+	
+
         return false; //so it compiles
     }
 
