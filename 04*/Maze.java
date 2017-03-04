@@ -11,20 +11,33 @@ public class Maze {
 	    Scanner in = new Scanner( new FileReader(filename) );
 
 	    String stuff = "";
-	    int row;
-	    int col = 0;
+	    int numRow = 0;
+	    int numCol = 0;
 	    while ( in.hasNextLine() ) {
-		stuff += in.nextLine();
-		stuff.toCharArray();
-		row = stuff.length();
-		System.out.println(row);
-		col++;
+		stuff += in.nextLine() + "\n";
+		if ( numRow == 0 ) {
+		    numRow = stuff.length() - 1;
+		}
+		numCol++;
+	    }
+	    System.out.println(stuff);
+	    System.out.println(numRow);
+	    System.out.println(numCol);
+	    maze  = new char[numRow][numCol];
+
+
+	    for ( int i = 0; i < numCol; i++ ) {
+		maze[0][i] = stuff.charAt(i);
+	    }
+
+	    //print out each char
+	    for ( int i = 0; i < maze[0].length; i++ ) {
+		System.out.println(maze[0][i]);
 	    }
 	}
 	catch( FileNotFoundException e ) {
 	}
-    
-	//maze = new char[][];
+
 	animate = false;
     }
 
@@ -68,7 +81,7 @@ public class Maze {
         Maze f;
         f = new Maze("data1.dat");//true animates the maze.
         
-        f.setAnimate(true);
+        f.setAnimate(false);
         f.solve();
 
         System.out.println(f);
