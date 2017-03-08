@@ -4,7 +4,7 @@ import java.util.*;
 public class USACO {
     private int[][] lakeGrid;
 
-    public int bronze(String filename) {
+    public static int bronze(String filename) {
 	try {
 	    File f = new File(filename);
 	    Scanner sc = new Scanner(f);
@@ -18,7 +18,12 @@ public class USACO {
 		}
 		rowNum++;
 	    }
-	    int r = line1.substring(0,1);
+	    String[] split = line1.split(" ");
+	    int r = Integer.parseInt( split[0] );
+	    int c = Integer.parseInt( split[1] );
+	    int e = Integer.parseInt( split[2] );
+	    int n = Integer.parseInt( split[3] );
+
 	}
 	catch(FileNotFoundException e) {
 	}
