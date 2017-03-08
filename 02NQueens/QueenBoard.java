@@ -7,119 +7,144 @@ public class QueenBoard{
     }
 
     private void addQueen(int r, int c) {
-	if ( r >= board.length || c >= board[0].length ) {
-	    throw new ArrayIndexOutOfBoundsException();
-	}
-	board[r][c]++;
 	
 	//updateBoardState
 
 	//right side
-	if ( c != board.length-1 ) {
-	    for ( int col = c+1; col < board[col].length-1; col++ ) {
-		board[r][col]++;
-	    }
+	for ( int col = c+1; col < board.length; col++ ) {
+	    board[r][col]++;
 	}
+	
 	//upper diagonal
-	if ( c != board.length-1 ) {
-	    int row = r-1;
-	    for ( int col = c+1; col < board[col].length-1 && row > 0; col++, row-- ) {
-		board[row][col]++;
-	    }
+	int row1 = r-1;
+	for ( int col = c+1; col < board.length && row1 > 0; col++, row1-- ) {
+	    board[row1][col]++;
 	}
+	
 	//lower diagonal
-	if ( c != board.length-1 ) {
-	    int row = r+1;
-	    for ( int col = c+1; col < board[col].length-1 && row < board.length; col++, row++ ) {
-		board[row][col]++;
-	    }
+	int row2 = r+1;
+	for ( int col = c+1; col < board.length && row2 < board.length; col++, row2++ ) {
+	    board[row2][col]++;
 	}
+
+	board[r][c] = -1;
     }
 
     private void removeQueen(int r, int c) {
-	if ( r >= board.length || c >= board[0].length ) {
-	    throw new ArrayIndexOutOfBoundsException();
-	}
-	board[r][c]--;
-	
+
 	//updateBoardState
 	
 	//right side
-	if ( c != board.length-1 ) {
-	    for ( int col = c+1; col < board[col].length-1; col++ ) {
-		board[r][col]--;
-	    }
+	for ( int col = c+1; col < board.length; col++ ) {
+	    board[r][col]--;
 	}
+	
 	//upper diagonal
-	if ( c != board.length-1 ) {
-	    int row = r-1;
-	    for ( int col = c+1; col < board[col].length && row > 0; col++, row-- ) {
-		board[row][col]--;
-	    }
+	int row1 = r-1;
+	for ( int col = c+1; col < board.length && row1 > 0; col++, row1-- ) {
+	    board[row1][col]--;
 	}
+	
 	//lower diagonal
-	if ( c != board.length-1 ) {
-	    int row = r+1;
-	    for ( int col = c+1; col < board[col].length && row < board.length; col++, row++ ) {
-		board[row][col]--;
-	    }
+	int row2 = r+1;
+	for ( int col = c+1; col < board.length && row2 < board.length; col++, row2++ ) {
+	    board[row2][col]--;
 	}
+
+	board[r][c] = 0;
     }
     
     public void solve() {
-	
-        solveH(0);
+	if ( !( board.length == 2 || board.length == 3 ) ) {
+	    solveH(0);
+	}
     }
-
+    
     private boolean solveH(int col) {
+
 	if ( col >= board.length ) {
-	    throw new ArrayIndexOutOfBoundsException();
+	    return true;
 	}
-	if ( col >= board.length-1 ) {
-	    return solutionCount == board.length;
+	
+	/*
+	String ans = "";
+	for ( int i = 0; i < board.length; i++ ) {
+	    for ( int j = 0; j < board.length; j++ ) {
+	        ans += board[i][j] + " ";
+	    }
+	    ans += "\n";
 	}
-	for ( int row = 0; row < board[col].length; row++ ) {
-	    if ( board[col][row] == 0 ) {
+	System.out.println(ans);
+	*/
+	
+	for ( int row = 0; row < board.length; row++ ) {
+	    if ( board[row][col] == 0 ) {
+		//System.out.println(board[row][col]);
 		addQueen(row,col);
-		return solveH(col+1);
+		if ( solveH(col+1) ) {
+		    return true;
+		}
+		removeQueen(row,col);
 	    }
 	}
-	//removeQueen(row,col)
-	return solveH(col+1);
+	return false;
     }
 
+    private boolean countH(int col) {
+	if ( col >= board.length ) {
+	    if ( solutionCount == -1 ) {
+		solutionCount = 1;
+	    }
+	    solutionCount++;
+	    return true;
+	}
+
+	for ( int row = 0; row < board.length; row++ ) {
+	    if ( board[row][col] == 0 ) {
+		addQueen(row,col);
+		if ( countH(col+1) ) {
+		    return true;
+		}
+		removeQueen(row,col);
+	    }
+	}
+	return false;
+    }
+    
     public void countSolutions() {
+	countH(0);
     }
     
     public int getCount() {
+	if ( board.length == 2 || board.length == 3 ) {
+	    return 0;
+	}
     	return solutionCount;
     }
 
     public String toString() {
 	String ans = "";
 	for ( int row = 0; row < board.length; row++ ) {
-	    for ( int col = 0; col < board[row].length; col++ ) {
+	    for ( int col = 0; col < board.length; col++ ) {
 		if ( board[row][col] == -1 ) {
-		    ans += "Q";
+		    ans += "Q ";
 		}
-		ans += board[row][col];
-		if ( col != board.length-1 ) {
-		    ans += ", ";
+	        else {
+		    ans += "_ ";
 		}
 	    }
 	    ans += "\n";
 	}
     	return ans;
     }
-
+    /*
     public static void main( String[] args ) {
 	QueenBoard q = new QueenBoard(4);
-	System.out.println(q);
-	q.addQueen(2,3);
-	q.solve();
-	System.out.println(q);
-	
-	//System.out.println( q.getCount() );
+	//System.out.println(q);
+	//q.solve();
+	//System.out.println(q);
+	q.countSolutions();
+	System.out.println(q.getCount());
     }
-
+    */
 }
