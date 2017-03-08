@@ -24,6 +24,8 @@ public class USACO {
 	    int e = Integer.parseInt( split[2] );
 	    int n = Integer.parseInt( split[3] );
 
+	    lakeGrid = new int[r][c];
+
 	}
 	catch(FileNotFoundException e) {
 	}
