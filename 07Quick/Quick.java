@@ -1,6 +1,6 @@
 public class Quick {
     public static int part( int[] data, int start, int end ) {
-	int piv = data[ (int)( Math.random() * ( end-start ) ) ];
+	int piv = data[ (int)( Math.random()*(end-start+1) ) + start ];
 	while ( start < end ) {
 	    while ( data[start] < piv ) {
 		start++;
