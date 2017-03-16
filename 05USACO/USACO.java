@@ -4,13 +4,16 @@ import java.util.*;
 public class USACO {
     private int[][] lakeGrid;
 
-    public static int bronze(String filename) {
+    public USACO() {
+    }
+
+    public static void bronze(String filename) {
 	try {
 	    File f = new File(filename);
 	    Scanner sc = new Scanner(f);
 	    int rowNum = 0;
 	    int colNum = 0;
-
+	    
 	    String line1 = "";
 	    while ( sc.hasNextLine() ) {
 		if ( rowNum == 0 ) {
@@ -24,13 +27,20 @@ public class USACO {
 	    int e = Integer.parseInt( split[2] );
 	    int n = Integer.parseInt( split[3] );
 
-	    lakeGrid = new int[r][c];
-
+	    System.out.println(r + " " + c + " " + e + " " + n)
+	    
+	    int[][] stuff = new int[r][c];
 	}
 	catch(FileNotFoundException e) {
 	}
     }
 
+    
     private static void stomp( int row, int col, int depth ) {
     }
-	
+
+    public static void main(String[] args) {
+	USACO a = new USACO();
+	a.bronze(
+    }
+}
