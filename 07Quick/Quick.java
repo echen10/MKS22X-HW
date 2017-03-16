@@ -12,6 +12,7 @@ public class Quick {
 		swap( data, start, end );
 	    }
 	}
+	System.out.println("piv= "+start);
 	return start;
     }
 
@@ -21,22 +22,14 @@ public class Quick {
 	data[b] = temp;
     }
 
+    /*
     public static int quickselect( int[]data, int k ) {
+    while ( part( data, start, end ) > k ) {
 	int piv = part( data, start, end );
 	if ( piv == k ) {
 	    return data[k];
 	}
-    
-    public static void main( String[] args ) {
-	Quick q = new Quick();
-	int[] ary = new int[] { 6,3,2,1,9 };
-	for ( int i = 0; i < ary.length; i++ ) {
-	    System.out.println(ary[i]);
-	}
-	q.part( ary, 0, 4 );
-	for ( int i = 0; i < ary.length; i++ ) {
-	    System.out.println(ary[i]);
-	}
     }
+    */
 
 }
