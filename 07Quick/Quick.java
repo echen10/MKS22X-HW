@@ -20,6 +20,12 @@ public class Quick {
 	data[a] = data[b];
 	data[b] = temp;
     }
+
+    public static int quickselect( int[]data, int k ) {
+	int piv = part( data, start, end );
+	if ( piv == k ) {
+	    return data[k];
+	}
     
     public static void main( String[] args ) {
 	Quick q = new Quick();
