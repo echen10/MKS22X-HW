@@ -1,6 +1,8 @@
 public class Quick {
     public static int part( int[] data, int start, int end ) {
-	int piv = data[ (int)( Math.random()*(end-start+1) ) + start ];
+	int piv = (int)( Math.random()*(end-start+1) ) + start;
+	int v = data[piv];
+	swap(data, piv, start);
 
 	int i = start;
 	int j = end;
