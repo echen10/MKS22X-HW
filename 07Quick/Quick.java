@@ -1,19 +1,37 @@
 public class Quick {
     public static int part( int[] data, int start, int end ) {
 	int piv = data[ (int)( Math.random()*(end-start+1) ) + start ];
-	while ( start < end ) {
-	    while ( data[start] < piv ) {
-		start++;
+
+	int i = start;
+	int j = end;
+	while ( i <= j ) {
+	    if ( data[i] < piv ) {
+		i++;
 	    }
-	    while ( data[end] > piv ) {
-		end--;
-	    }
-	    if ( start < end ) {
-		swap( data, start, end );
+	    else {
+		swap(data, i, j);
+		j--;
 	    }
 	}
-	System.out.println("piv= "+start);
-	return start;
+	return i;
+	//swap(data, i, j);
+	
+	/*
+	while ( i <= gt ) {
+	    if ( data[i] < v ) {
+		i++;
+	    }
+	    else if ( data[i] < v ) {
+		swap(data, i, lt);
+		i++;
+		lt++;
+	    }
+	    else {
+		swap(a,i,lt);
+		gt--;
+	    }
+	}
+	*/
     }
 
     private static void swap( int[] data, int a, int b ) {

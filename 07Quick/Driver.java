@@ -1,7 +1,7 @@
 public class Driver {
     public static void main( String[] args ) {
 	Quick q = new Quick();
-	int[] ary = new int[] { 1,2,3,3,3,3 };
+	int[] ary = new int[] { 2,3,2,1 };
 	String ans1 = "";
 	String ans2 = "";
 	for ( int i = 0; i < ary.length; i++ ) {
