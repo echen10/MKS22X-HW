@@ -4,20 +4,19 @@ public class Quick {
 	int v = data[piv];
 	swap(data, piv, start);
 
-	int i = start;
+	int i = start+1;
 	int j = end;
 	while ( i <= j ) {
 	    if ( data[i] < piv ) {
 		i++;
 	    }
 	    else {
-		swap(data, i, j);
+		swap(data, start, j);
 		j--;
 	    }
 	}
+	swap(data, start, i);
 	return i;
-	//swap(data, i, j);
-	
 	/*
 	while ( i <= gt ) {
 	    if ( data[i] < v ) {
