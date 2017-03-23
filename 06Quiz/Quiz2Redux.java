@@ -2,6 +2,7 @@ import java.util.*;
 public class Quiz2Redux {
     public static ArrayList<String> combinations(String s) {
 	ArrayList<String>words = new ArrayList<String>();
+	words.add(s);
 	help( words, s, 0 );
 	Collections.sort(words);
 	return words;
@@ -14,14 +15,15 @@ public class Quiz2Redux {
 	    help( words, part, index );
 	    help( words, s, index+1 );
 	}
-	else {
-	    words.add("");
-	}
     }
-
+    
+    /*
     public static void main(String[] args) {
 	String s = "abcd";
+	String s2 = "kji";
 	System.out.println( combinations(s) );
+	System.out.println( combinations(s2) );
     }
+    */
 
 }
