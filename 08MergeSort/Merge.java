@@ -4,20 +4,27 @@ public class Merge {
 
     public static void merge( int[] a, int[] b, int[] dest ) {
 	int i = 0, j = 0;
-	int index = 0;
-	int[] d = int[a.length+.length]
-	while ( dest.length-2 < i+j ) {
+	int total = a.length + b.length - 2;
+	int[] d = new int[total];
+
+	for ( int count = 0; i+j < total;  ) {
 	    if ( a[i] > b[j] ) {
-		dest[index] = b[j];
-		index++;
+		d[count] = b[j];
+		count++;
 		j++;
 	    }
 	    else {
-		dest[index] = a[i];
-		index++;
+		d[count] = a[i];
+		count++;
 		i++;
 	    }
 	}
+
+	String ans = "ANS: ";
+	for ( int k = 0; k < d.length; k++ ) {
+	    ans += d[k] + ", ";
+	}
+	System.out.println(ans);
     }
 	
 }
