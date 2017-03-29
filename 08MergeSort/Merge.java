@@ -1,36 +1,66 @@
 public class Merge {
     public static void mergesort( int[] ary ) {
+	
     }
 
     public void merge( int[] a, int[] b, int[] dest ) {
-	int i = 0, j = 0;
-<<<<<<< HEAD
-	int index = 0;
-	int[] d = new int[ a.length + b.length ];
-	while ( dest.length-2 < i+j ) {
-=======
-	int total = a.length + b.length - 2;
-	int[] d = new int[total];
 
-	for ( int count = 0; i+j < total;  ) {
->>>>>>> 985a9cdc0e70d82233b5889e3b23baec9b1fd8cf
-	    if ( a[i] > b[j] ) {
-		d[count] = b[j];
-		count++;
-		j++;
-	    }
-	    else {
-		d[count] = a[i];
-		count++;
+	int i = 0, j = 0, count = 0;
+	while ( i < a.length && j < b.length ) {
+	    if ( a[i] < b[j] ) {
+		dest[count] = a[i];
 		i++;
 	    }
+	    else {
+		dest[count] = b[j];
+		j++;
+	    }
+	    count++;
 	}
 
-	String ans = "ANS: ";
-	for ( int k = 0; k < d.length; k++ ) {
-	    ans += d[k] + ", ";
+	//To add the rest of the values:
+
+	while ( i < a.length ) {
+	    dest[count] = a[i];
+	    i++;
+	    count++;
 	}
-	System.out.println(ans);
+	while ( j < b.length ) {
+	    dest[count] = b[j];
+	    j++;
+	    count++;
+	}
+
+
+
+	/*   This didn't work...
+	int total = a.length + b.length;
+	for ( int count = 0, i = 0, j = 0; i < a.length && j < b.length ; count++ ) {
+	    if ( i == a.length-1 ) {
+		for ( int m = j; j < b.length; j++ ) {
+		    dest[count] = b[m];
+		}
+	    }
+	    else if ( j == b.length-1 ) {
+		for ( int n = i; i < a.length; n++ ) {
+		    dest[count] = a[n];
+		}
+	    }
+	    else if ( a[i] < b[j] ) {
+		dest[count] = a[i];
+		if ( i < a.length ) {
+		    i++;
+		}
+	    }
+	    else {
+		dest[count] = b[j];
+		if ( j < b.length ) {
+		    j++;
+		}
+	    }
+	}
+	*/
+
     }
 	
 }
