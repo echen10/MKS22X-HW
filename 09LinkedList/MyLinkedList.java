@@ -18,14 +18,13 @@ public class MyLinkedList {
 
     private class LNode {
 	private int value;
-	private LNode next, start;
+	private LNode next;
 	
 	public LNode() {
 	}
 	
 	public LNode( int val, LNode ln ) {
 	    value = val;
-	    start = ln;
 	    next = null;
 	}
     }
