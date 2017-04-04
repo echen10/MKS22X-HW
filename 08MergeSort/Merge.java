@@ -1,30 +1,54 @@
 public class Merge {
+    
     public static void mergesort( int[] ary ) {
+	if ( ary.length <= 1 ) {
+	    return;
+	}
+	else {
+	    int[] left = new int[ ary.length / 2 ];
+	    fill( 0, ary.length/2, ary, left );
+	    int[] right = new int[ ary.length / 2 ];
+	    fill( ary.length/2, ary.length, ary, right );
+	    
+	    mergesort(left);
+	    mergesort(right);
+	    merge(left, right, ary);
+	}
+		
     }
 
     public static void merge( int[] a, int[] b, int[] dest ) {
-	int i = 0, j = 0;
-	int total = a.length + b.length - 2;
-	int[] d = new int[total];
 
-	for ( int count = 0; i+j < total;  ) {
-	    if ( a[i] > b[j] ) {
-		d[count] = b[j];
-		count++;
-		j++;
-	    }
-	    else {
-		d[count] = a[i];
-		count++;
+	int i = 0, j = 0, count = 0;
+	while ( i < a.length && j < b.length ) {
+	    if ( a[i] < b[j] ) {
+		dest[count] = a[i];
 		i++;
 	    }
+	    else {
+		dest[count] = b[j];
+		j++;
+	    }
+	    count++;
 	}
 
-	String ans = "ANS: ";
-	for ( int k = 0; k < d.length; k++ ) {
-	    ans += d[k] + ", ";
+	while ( i < a.length ) {
+	    dest[count] = a[i];
+	    i++;
+	    count++;
 	}
-	System.out.println(ans);
+	while ( j < b.length ) {
+	    dest[count] = b[j];
+	    j++;
+	    count++;
+	}
+
+    }
+
+    private static void fill( int start, int end, int[] ary, int[] dest ) {
+	for ( int i = start, count = 0; i < end-start; i++,count++ ) {
+	    dest[count] = ary[i];
+	}
     }
 	
 }

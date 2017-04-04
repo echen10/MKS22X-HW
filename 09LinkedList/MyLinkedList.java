@@ -53,7 +53,11 @@ public class MyLinkedList {
 	
 	public LNode( int val, LNode rest ) {
 	    value = val;
+<<<<<<< HEAD
 	    rest = null;
+=======
+	    next = null;
+>>>>>>> 8c03f6af6f17e20f3cc4e34f9d2750210d1ad45a
 	}
     }
 
