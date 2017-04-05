@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyLinkedList {
     private LNode start, end;
     private int size;
@@ -6,8 +7,7 @@ public class MyLinkedList {
     }
 
     public boolean add( int value ) {
-	LNode temp = new LNode(value, start);
-        start = temp;
+	LNode temp = new LNode(value);
         size++;
 	return true;
     }
@@ -17,37 +17,44 @@ public class MyLinkedList {
     }
 
     public int get( int index ) {
-	LNode node = getNode(index);
-	return node.value;
+	return getNthNode(index).value;
     }
 
     public int set( int index, int value ) {
-	return 0;
+	LNode node = getNthNode(index);
+	int temp = node.get(index);
+	node.value = value;
+	return temp;
     }
 
-    private LNode getNode( int index ) {
+    private LNode getNthNode( int index ) {
 	if ( index < 0 || index >= size ) {
 	    throw new IndexOutOfBoundsException();
 	}
 	LNode current = start;
-	while ( count != index ) {
-	    current = current.nextNode;
-	    count++;
+	int count = index;
+	while ( current.next != null && count != 0 ) {
+	    current = current.next;
+	    count--;
 	}
 	return current;
     }
 
-    private void remove( LNode node ) {
-	if ( HEAD && TAIL ) {
-	    
+    private void remove( LNode target ) {
+	if ( this.start == target && this.end == target ) {
+	    target.value = null;
 	}
-	if ( HEAD ) {
-	    node.nextNode = start;
-	    node.nextNode.prevNode = null;
+	else if ( this.start == target ) {
+	    target.next = start;
+	    target.next.prev = null;
 	}
-	if ( TAIL ) {
-	    node.prevNode = end;
-	    node.prevNode.nextNode = null;
+	else if ( this.end == target ) {
+	    target.prev = end;
+	    target.prev.next = null;
+	}
+	else {
+	    target.next.prev = target.prev;
+	    target.prev.next = target.next;
 	}
     }
 	
@@ -59,8 +66,8 @@ public class MyLinkedList {
 	int count = 0;
 	while ( count < size-1 ) {
 	    ans += current.value + ", ";
-	    if ( current.nextNode != null ) {
-		current = current.nextNode;
+	    if ( current.next != null ) {
+		current = current.next;
 	    }
 	    count++;
 	}
@@ -70,31 +77,26 @@ public class MyLinkedList {
 
     private class LNode {
 	private int value;
-	private LNode nextNode, prevNode;
+	private LNode next, prev;
 	
-	public LNode() {
-	}
-	
-	public LNode( int val, LNode prev, LNode next ) {
-	    value = val;
-	    nextNode = next;
-	    prevNode = prev;
+	public LNode( int value ) {
+	    this.value = value;
 	}
 
 	public String toString() {
 	    String ans = "";
-	    if ( prevNode == null ) {
+	    if ( prev == null ) {
 		ans += "(null)";
 	    }
 	    else {
 		ans += prev.value;
 	    }
-	    ans += "(" + value ")";
-	    if ( nextNode == null ) {
+	    ans += "(" + value + ")";
+	    if ( next == null ) {
 		ans += "(null)";
 	    }
 	    else {
-		ans += "(" + value ")";
+		ans += "(" + value + ")";
 	    }
 		    
 	    return ans;
