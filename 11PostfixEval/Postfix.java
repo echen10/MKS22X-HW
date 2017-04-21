@@ -29,6 +29,8 @@ public class Postfix {
     }
 
     public static double calc( String op, String a, String b ) {
+	int x = Integer.parseInt(a);
+	int y = Integer.parseInt(b);
 	return 0.0;
     }
     
