@@ -10,7 +10,7 @@ public class Postfix {
 	    if ( isOp(tokens[i]) ) {
 		String a = nums.pop();
 		String b = nums.pop();
-		calc( tokens[i], a, b );
+		calc( tokens[i], b, a );
 	    }
 	    else {
 		nums.push(tokens[i]);
@@ -20,7 +20,11 @@ public class Postfix {
     }
 
     public static boolean isOp( String s ) {
-	if ( s.compareTo("+") == 0 ) {
+	if ( s.compareTo("+") == 0 ||
+	     s.compareTo("-") == 0 ||
+	     s.compareTo("*") == 0 ||
+	     s.compareTo("/") == 0 ||
+	     s.compareTo("%") == 0 ) {
 	    return true;
 	}
 	else { 
@@ -29,12 +33,32 @@ public class Postfix {
     }
 
     public static double calc( String op, String a, String b ) {
-	int x = Integer.parseInt(a);
-	int y = Integer.parseInt(b);
-	return 0.0;
+	double ans = 0.0;
+	double x = Double.parseDouble(a);
+	double y = Double.parseDouble(b);
+	System.out.println( x + "\n" + y );
+
+	if ( op.compareTo("+") == 0 ) {
+	    ans = x + y;
+	}
+	else if ( op.compareTo("-") == 0 ) {
+	    ans = x - y;
+	}
+	else if ( op.compareTo("*") == 0 ) {
+	    ans = x * y;
+	}
+	else if ( op.compareTo("/") == 0 ) {
+	    ans = x * 1.0 / y;
+	}
+	else if ( op.compareTo("%") == 0 ) {
+	    ans = x % y;
+	}
+
+	System.out.println(ans);
+	return ans;
     }
     
     public static void main( String[] args ) {
-	eval("S t o p");
+	System.out.println( eval("10 2.0 +") );
     }
 }
