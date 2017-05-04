@@ -34,24 +34,19 @@ public class MyHeap {
 
     public String toString() {
 	String ans = "";
-        int count = 0;
 	for ( int i = 1; i < tree.size(); i++ ) {
-	    if ( i == Math.pow(2,count) ) {
-		ans += tree.get(i) + " ";
-		ans += "\n";
-		count++;
-	    }
-	    else {
-		ans += tree.get(i) + " ";
-	    }
+	    if ( i ) {
+		System.out.println(
+	    ans += tree.get(i) + " ";
+	    System.out.println(tree.get(i));
 	}
 	return ans;
     }
 
     public static void main( String[] args ) {
 	MyHeap m = new MyHeap();
-	System.out.println(m);
 	m.add("A");
 	m.add("B");
+	System.out.println(m);
     }
 }
