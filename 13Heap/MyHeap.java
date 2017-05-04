@@ -34,11 +34,14 @@ public class MyHeap {
 
     public String toString() {
 	String ans = "";
-	for ( int i = 1; i < tree.size(); i++ ) {
-	    if ( i ) {
-		System.out.println(
-	    ans += tree.get(i) + " ";
-	    System.out.println(tree.get(i));
+	int count = 1;
+	for ( int i = 0; i < tree.size()-1; i++ ) {
+	    if ( i == Math.pow(2,count)-1 ) {
+	        ans += "\n";
+		count++;
+	    }
+	    ans += tree.get(i+1) + " ";
+	    //System.out.println(tree.get(i));
 	}
 	return ans;
     }
@@ -47,6 +50,11 @@ public class MyHeap {
 	MyHeap m = new MyHeap();
 	m.add("A");
 	m.add("B");
+	m.add("C");
+	m.add("D");
+	m.add("E");
+	m.add("F");
+	m.add("G");
 	System.out.println(m);
     }
 }
