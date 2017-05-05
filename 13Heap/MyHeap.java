@@ -32,17 +32,34 @@ public class MyHeap {
 	return tree.get(1);
     }
 
+    private int compare( String a, String b ) {
+	if ( max ) {
+	    return a.compareTo(b);
+	}
+	else {
+	    return b.compareTo(a);
+	}
+    }
+
     private void pushUp() {
 	String last = tree.get( tree.size()-1 );
-	String parent = tree.get( k );
+	String parent = tree.get( 1 );
 
-	System.out.println( "parent: " + parent + " | " + "last: " + last );
+	if ( last.compareTo(parent) > 0 && ) {
+	    swap(last,parent);
+	}
+	//System.out.println( "parent: " + parent + " | " + "last: " + last );
     }
     
     private void pushDown() {
 	
     }
 
+    private void swap( int a, int b ) {
+	String temp = a;
+	tree.set( a, tree.get(b) );
+	tree.set( b, temp );
+    }
 
     public String toString() {
 	String ans = "";
@@ -70,5 +87,8 @@ public class MyHeap {
 	System.out.println( "\nRemoved: " + m.remove() );
 	System.out.println( "\nRoot: " + m.peek() );
 	System.out.println(m);
+	System.out.println("A".compareTo("B"));
+	System.out.println("B".compareTo("A"));
+						   
     }
 }
