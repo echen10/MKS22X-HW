@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class MyHeap {
     private boolean max;
     private ArrayList<String> tree;
@@ -8,29 +9,40 @@ public class MyHeap {
 	tree = new ArrayList<String>();
 	tree.add(null);
     }
-    /*
+
     public MyHeap( boolean type ) {
-	if ( type ) {
-	    max = true;
-	}
-	else {
-	    max = false;
-	}
+        max = type;
+	tree = new ArrayList<String>();
+	tree.add(null);
     }
-    */
 
     public void add( String s ) {
 	tree.add(s);
+	pushUp();
     }
-    /*
-    public void remove() {
 
+    public String remove() {
+	String ans = tree.get( tree.size()-1 );
+	tree.remove( ans );
+	pushDown();
+	return ans;
     }
     
     public String peek() {
-
+	return tree.get(1);
     }
-    */
+
+    private void pushUp() {
+	String last = tree.get( tree.size()-1 );
+	String parent = tree.get( k );
+
+	System.out.println( "parent: " + parent + " | " + "last: " + last );
+    }
+    
+    private void pushDown() {
+	
+    }
+
 
     public String toString() {
 	String ans = "";
@@ -41,7 +53,6 @@ public class MyHeap {
 		count++;
 	    }
 	    ans += tree.get(i+1) + " ";
-	    //System.out.println(tree.get(i));
 	}
 	return ans;
     }
@@ -55,6 +66,9 @@ public class MyHeap {
 	m.add("E");
 	m.add("F");
 	m.add("G");
+	System.out.println(m);
+	System.out.println( "\nRemoved: " + m.remove() );
+	System.out.println( "\nRoot: " + m.peek() );
 	System.out.println(m);
     }
 }
