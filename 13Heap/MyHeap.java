@@ -42,13 +42,19 @@ public class MyHeap {
     }
 
     private void pushUp() {
-	String last = tree.get( tree.size()-1 );
-	String parent = tree.get( 1 );
+	int count = tree.size()-1;
+	while ( count > 1 ) {
+	    String last = tree.get( tree.size() - 1 );
+	    String parent = tree.get( (tree.size() - 1) / 2 );
+	    //System.out.println(last + " | " + parent + " | " + count + " | " + tree.size());
+	    
+	    if ( compare(parent, last) > 0 ) {
+		swap( tree.size()-1, tree.size() / 2 );
+	    }
+	    count = count / 2;
 
-	if ( last.compareTo(parent) > 0 && ) {
-	    swap(last,parent);
+	    //System.out.println( "parent: " + parent + " | " + "last: " + last );
 	}
-	//System.out.println( "parent: " + parent + " | " + "last: " + last );
     }
     
     private void pushDown() {
@@ -56,7 +62,7 @@ public class MyHeap {
     }
 
     private void swap( int a, int b ) {
-	String temp = a;
+	String temp = tree.get(a);
 	tree.set( a, tree.get(b) );
 	tree.set( b, temp );
     }
@@ -76,19 +82,13 @@ public class MyHeap {
 
     public static void main( String[] args ) {
 	MyHeap m = new MyHeap();
-	m.add("A");
-	m.add("B");
 	m.add("C");
-	m.add("D");
-	m.add("E");
-	m.add("F");
-	m.add("G");
+	m.add("B");
+	m.add("A");
+
 	System.out.println(m);
 	System.out.println( "\nRemoved: " + m.remove() );
-	System.out.println( "\nRoot: " + m.peek() );
 	System.out.println(m);
-	System.out.println("A".compareTo("B"));
-	System.out.println("B".compareTo("A"));
 						   
     }
 }
