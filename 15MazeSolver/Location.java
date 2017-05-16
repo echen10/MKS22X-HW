@@ -20,10 +20,12 @@ public class Location implements Comparable<Location> {
 	previous = prev;
 	distToStart = disStart;
 	distToGoal = disEnd;
-	aStar = aStar;
+	this.aStar = aStar;
     }
 
     public int compareTo( Location other ) {
+	System.out.println(this.aStar);
+	System.out.println(other.aStar);
 	if ( aStar ) {
 	    int first = this.distToGoal + this.distToStart;
 	    int second = other.distToGoal + other.distToStart;
@@ -35,5 +37,4 @@ public class Location implements Comparable<Location> {
 	    return first - second;
 	}
     }
-
 }
