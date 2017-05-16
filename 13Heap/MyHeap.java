@@ -1,18 +1,26 @@
 import java.util.*;
 
 public class MyHeap {
-    private boolean max;
+    private int max;
+    private int size;
     private ArrayList<String> tree;
 
     public MyHeap() {
-	max = true;
+	max = 1;
 	tree = new ArrayList<String>();
+	size = 0;
 	tree.add(null);
     }
 
     public MyHeap( boolean type ) {
-        max = type;
+	if ( type ) {
+	    max = 1;
+	}
+	else {
+	    max = -1;
+	}
 	tree = new ArrayList<String>();
+	size = 0;
 	tree.add(null);
     }
 
@@ -32,12 +40,16 @@ public class MyHeap {
 	return tree.get(1);
     }
 
+    private int size() {
+	return size;
+    }
+
     private int compare( String a, String b ) {
-	if ( max ) {
+	if ( max == 1 ) {
 	    return a.compareTo(b);
 	}
 	else {
-	    return b.compareTo(a);
+	    return a.compareTo(b) * -1;
 	}
     }
 
@@ -80,6 +92,7 @@ public class MyHeap {
 	return ans;
     }
 
+    /**
     public static void main( String[] args ) {
 	MyHeap m = new MyHeap();
 	m.add("C");
@@ -91,4 +104,5 @@ public class MyHeap {
 	System.out.println(m);
 						   
     }
+    **/
 }

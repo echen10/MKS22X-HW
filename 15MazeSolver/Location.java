@@ -23,6 +23,16 @@ public class Location implements Comparable<Location> {
 	this.aStar = aStar;
     }
 
+    public Location getPrev() {
+	return previous;
+    }
+    public int getRow() {
+	return row;
+    }
+    public int getCol() {
+	return col;
+    }
+
     public int compareTo( Location other ) {
 	System.out.println(this.aStar);
 	System.out.println(other.aStar);
