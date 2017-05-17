@@ -60,7 +60,7 @@ public class MyHeap {
 	    String parent = tree.get( (tree.size() - 1) / 2 );
 	    //System.out.println(last + " | " + parent + " | " + count + " | " + tree.size());
 	    
-	    if ( compare(parent, last) > 0 ) {
+	    if ( compare(parent, last)*max > 0 ) {
 		swap( tree.size()-1, tree.size() / 2 );
 	    }
 	    count = count / 2;
@@ -92,17 +92,19 @@ public class MyHeap {
 	return ans;
     }
 
-    /**
+ 
     public static void main( String[] args ) {
-	MyHeap m = new MyHeap();
-	m.add("C");
-	m.add("B");
-	m.add("A");
+	MyHeap m = new MyHeap(true);
+	m.add("5");
+	m.add("2");
+	m.add("1");
+	m.add("4");
+	m.add("3");
 
 	System.out.println(m);
 	System.out.println( "\nRemoved: " + m.remove() );
 	System.out.println(m);
 						   
     }
-    **/
+
 }
