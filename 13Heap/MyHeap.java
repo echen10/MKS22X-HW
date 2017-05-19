@@ -30,8 +30,8 @@ public class MyHeap {
     }
 
     public String remove() {
-	String ans = tree.get( tree.size()-1 );
-	tree.remove( ans );
+	String ans = tree.get( 1 );
+	tree.set( 1, tree.remove( tree.size()-1 ) );
 	pushDown();
 	return ans;
     }
@@ -70,7 +70,8 @@ public class MyHeap {
     }
     
     private void pushDown() {
-	
+	int child1 tree.get();
+	int child2 ;
     }
 
     private void swap( int a, int b ) {
@@ -95,11 +96,11 @@ public class MyHeap {
  
     public static void main( String[] args ) {
 	MyHeap m = new MyHeap(true);
-	m.add("5");
-	m.add("2");
 	m.add("1");
-	m.add("4");
+	m.add("2");
 	m.add("3");
+	m.add("4");
+	m.add("5");
 
 	System.out.println(m);
 	System.out.println( "\nRemoved: " + m.remove() );
